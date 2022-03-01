@@ -10,4 +10,10 @@
     <ProjectReference Include="..\TL.Catalog.Domain\TL.Catalog.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Context\" />
+    <Folder Include="EntitiesConfiguration\" />
+    <Folder Include="Repositories\" />
+  </ItemGroup>
+
 </Project>
