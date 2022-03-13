@@ -1,10 +1,13 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Security.AccessControl;
 
 namespace TL.Catalog.Domain.Models;
 
 public class Series
 {
+    /*[Key]
+    public int Id { get; set; }
     [Column("quantity_own")]
     public int QuantityOwn { get; set; }
     [Column("quantity_total")]
@@ -15,5 +18,5 @@ public class Series
     public DateTime CreatedDate { get; set; }
     public virtual Author Author { get; set; } 
     public virtual Collection Collection { get; set; }
-    public virtual ICollection<Book> Books { get; set; }
+    public virtual ICollection<Book> Books { get; set; }*/
 }
