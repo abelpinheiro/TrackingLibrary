@@ -9,10 +9,13 @@ public class Book
     [Column("Id")]
     public int Id { get; set; }
     [Column("title")]
+    [Required]
     public string Title { get; set; }
     [Column("volume")]
-    public string Volume { get; set; }
+    [Required]
+    public int Volume { get; set; }
     [Column("created_date")]
+    [Required]
     public DateTime CreatedDate { get; set; }
     public virtual Author Author { get; set; }
     /*public virtual Seller Seller { get; set; }

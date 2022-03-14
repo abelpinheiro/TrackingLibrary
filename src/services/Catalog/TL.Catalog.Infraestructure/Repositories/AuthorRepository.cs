@@ -1,10 +1,20 @@
-﻿using TL.Catalog.Domain.Interfaces;
+﻿using System.Security.Cryptography.X509Certificates;
+using Microsoft.EntityFrameworkCore;
+using TL.Catalog.Domain.Interfaces;
 using TL.Catalog.Domain.Models;
+using TL.Catalog.Infrastructure.Context;
 
 namespace TL.Catalog.Infrastructure.Repositories;
 
 public class AuthorRepository : IAuthorRepository
 {
+    public CatalogContext _context;
+
+    public AuthorRepository(CatalogContext context)
+    {
+        _context = context;
+    }
+
     public Task<Author> CreateAsync(Author author)
     {
         throw new NotImplementedException();
@@ -25,8 +35,10 @@ public class AuthorRepository : IAuthorRepository
         throw new NotImplementedException();
     }
 
-    public Task<IEnumerable<Author>> GetAllAsync()
+    public List<Author> GetAllAsync()
     {
-        throw new NotImplementedException();
+        return 
+            _context.Authors.ToList();
     }
+
 }
