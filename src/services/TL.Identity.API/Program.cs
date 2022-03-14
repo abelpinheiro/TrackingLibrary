@@ -11,12 +11,12 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("allowOrigins",
+    options.AddDefaultPolicy(
         builder =>
         {
-            builder.WithOrigins("*")
-                .AllowAnyHeader()
-                .AllowAnyMethod();
+            builder.AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader();
         });
 });
 
@@ -82,14 +82,13 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
-    app.UseCors("allowOrigins");
-
 }
 
 app.UseHttpsRedirection();
 
 app.UseAuthentication();
 app.UseAuthorization();
+app.UseCors();
 
 
 app.MapControllers();
