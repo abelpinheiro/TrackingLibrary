@@ -15,30 +15,41 @@ public class AuthorRepository : IAuthorRepository
         _context = context;
     }
 
-    public Task<Author> CreateAsync(Author author)
+    public async Task<int> CreateAsync(Author author)
+    {
+        await _context.Authors.AddAsync(author);
+        await _context.SaveChangesAsync();
+
+        return author.Id;
+    }
+
+    public async Task UpdateAsync(Author newAuthor)
+    {
+        var author = await GetByIdAsync(newAuthor.Id);
+        author.Name = newAuthor.Name;
+        author.Gender = newAuthor.Gender;
+        await _context.SaveChangesAsync();
+    }
+
+    public Task<Author> DeleteAsync()
     {
         throw new NotImplementedException();
     }
 
-    public Task<Author> UpdateAsync(Author author)
+    public async Task DeleteByIdAsync(Author author)
     {
-        throw new NotImplementedException();
+        _context.Authors.Remove(author);
+        await _context.SaveChangesAsync();
     }
 
-    public Task<Author> DeleteAsync(Author author)
+    public async Task<Author> GetByIdAsync(int id)
     {
-        throw new NotImplementedException();
-    }
-
-    public Task<Author> GetByIdAsync(Author author)
-    {
-        throw new NotImplementedException();
+        return await _context.Authors.FindAsync(id);
     }
 
     public List<Author> GetAllAsync()
     {
-        return 
-            _context.Authors.ToList();
+        return _context.Authors.ToList();
     }
 
 }
