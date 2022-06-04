@@ -4,9 +4,10 @@ namespace TL.Catalog.Domain.Interfaces;
 
 public interface IAuthorRepository
 {
-    Task<Author> CreateAsync(Author author);
-    Task<Author> UpdateAsync(Author author);
-    Task<Author> DeleteAsync(Author author);
-    Task<Author> GetByIdAsync(Author author);
+    Task<int> CreateAsync(Author author);
+    Task UpdateAsync(Author author);
+    Task<Author> DeleteAsync();
+    Task DeleteByIdAsync(Author author);
+    Task<Author> GetByIdAsync(int id);
     List<Author> GetAllAsync();
 }
