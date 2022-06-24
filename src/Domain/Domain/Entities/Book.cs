@@ -19,7 +19,7 @@ public class Book
     public DateTime CreatedDate { get; set; }
     
     public int SeriesId { get; set; }
-    
+    public int SellerId { get; set; }
     public int CollectionId { get; set; }
     
     public virtual ICollection<Author> Authors { get; set; }

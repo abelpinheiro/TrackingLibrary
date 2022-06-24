@@ -16,7 +16,8 @@ public class BookConfiguration : IEntityTypeConfiguration<Book>
 
         builder
             .HasOne(x => x.Seller)
-            .WithOne(x => x.Book);
+            .WithOne(x => x.Book)
+            .HasForeignKey<Book>(x => x.SellerId);
 
         builder
             .HasOne(x => x.Series)

@@ -7,11 +7,12 @@ namespace Domain.Entities;
 public class Seller
 {
     [Key]
-    public string IsbnId { get; set; }
+    public int Id { get; set; }
 
     public string Store { get; set; }
 
     public decimal Price { get; set; }
 
+    public string Isbn { get; set; }
     public virtual Book Book { get; set; }
 }

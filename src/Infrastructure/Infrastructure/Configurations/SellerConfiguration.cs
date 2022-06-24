@@ -8,6 +8,6 @@ public class SellerConfiguration : IEntityTypeConfiguration<Seller>
 {
     public void Configure(EntityTypeBuilder<Seller> builder)
     {
-        builder.HasKey(x => x.IsbnId);
+        builder.HasKey(x => x.Id);
     }
 }
