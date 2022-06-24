@@ -7,16 +7,24 @@ namespace Domain.Entities;
 public class Book
 {
     [Key]
-    [Column("Id")]
     public int Id { get; set; }
+    
     [Column("title")]
-    [Required]
     public string Title { get; set; }
+    
     [Column("volume")]
-    [Required]
     public int Volume { get; set; }
+    
     [Column("created_date")]
-    [Required]
     public DateTime CreatedDate { get; set; }
-    public virtual Author Author { get; set; }
+    
+    public int SeriesId { get; set; }
+    
+    public int CollectionId { get; set; }
+    
+    public virtual ICollection<Author> Authors { get; set; }
+    public virtual ICollection<Category> Categories { get; set; }
+    public virtual Seller Seller { get; set; }
+    public virtual Series Series { get; set; }
+    public virtual Collection Collection { get; set; }
 }
