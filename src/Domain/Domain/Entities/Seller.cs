@@ -1,10 +1,11 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Domain.Repositories;
 
 namespace Domain.Entities;
 
 [Table("seller")]
-public class Seller
+public class Seller : IEntity
 {
     [Key]
     public int Id { get; set; }

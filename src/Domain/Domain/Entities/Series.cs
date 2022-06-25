@@ -1,10 +1,11 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Domain.Repositories;
 
 namespace Domain.Entities;
 
 [Table("series")]
-public class Series
+public class Series : IEntity
 {
     [Key]
     public int Id { get; set; }
