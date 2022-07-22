@@ -11,6 +11,6 @@ public class TrackingLibraryDbContext : DbContext
         
     }
 
-    public DbSet<Author> Authors { get; set; }
-    public DbSet<Book> Books => Set<Book>();
+    public virtual DbSet<Author> Authors { get; set; }
+    public virtual DbSet<Book> Books => Set<Book>();
 }
