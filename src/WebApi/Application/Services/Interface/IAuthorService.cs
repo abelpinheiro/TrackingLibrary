@@ -2,5 +2,5 @@
 
 public interface IAuthorService
 {
-    
+    public void CreateAsync();
 }
