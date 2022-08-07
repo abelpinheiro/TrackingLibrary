@@ -2,5 +2,5 @@
 
 public interface IAuthorInteractor
 {
-    public void CreateAsync();
+    public Task CreateAsync(string request);
 }

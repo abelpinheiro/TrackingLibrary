@@ -1,4 +1,5 @@
-﻿using Application.Services.Interface;
+﻿using Application.DataTransferObjects;
+using Application.Services.Interface;
 using Domain.Services.Interface;
 
 namespace Application.Services;
@@ -12,8 +13,9 @@ public class AuthorService : IAuthorService
         _authorInteractor = authorInteractor;
     }
     
-    public void CreateAsync()
+    public async Task CreateAsync(AuthorPostRequest request)
     {
-        _authorInteractor.CreateAsync();
+        string h = "";
+        await _authorInteractor.CreateAsync(h);
     }
 }

@@ -1,6 +1,8 @@
-﻿namespace Application.Services.Interface;
+﻿using Application.DataTransferObjects;
+
+namespace Application.Services.Interface;
 
 public interface IAuthorService
 {
-    public void CreateAsync();
+    public Task CreateAsync(AuthorPostRequest request);
 }
