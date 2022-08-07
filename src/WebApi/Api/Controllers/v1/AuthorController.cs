@@ -33,6 +33,10 @@ public class AuthorController : ControllerBase
     [HttpGet]
     public async Task<IActionResult> GetAsync()
     {
-        return Ok();
+        List<string> data = new List<string>()
+        {
+            "oi", "deu", "bom"
+        };
+        return Ok(data);
     }
 }
