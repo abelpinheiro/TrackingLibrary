@@ -4,9 +4,9 @@ namespace Domain.Repositories;
 
 public interface IRepository<T> where T : IEntity
 {
-    void Create(T entity);
-    IQueryable<T> FindAll();
-    T FindById(Expression<Func<T, bool>> predicate);
-    void Update(T entity);
-    void Delete(T entity);
+    Task CreateAsync(T entity);
+    IQueryable<T> FindAllAsync();
+    T FindByIdAsync(Expression<Func<T, bool>> predicate);
+    void UpdateAsync(T entity);
+    void DeleteAsync(T entity);
 }
