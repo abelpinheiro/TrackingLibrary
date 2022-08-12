@@ -9,7 +9,7 @@ namespace Api.Controllers.v1;
 [Route("api/v{version:apiVersion}/[controller]")]
 public class AuthorController : ControllerBase
 {
-    private IAuthorService _authorService;
+    private readonly IAuthorService _authorService;
 
     public AuthorController(IAuthorService authorService)
     {
@@ -25,18 +25,33 @@ public class AuthorController : ControllerBase
     [HttpPost]
     public async Task<IActionResult> CreateAsync([FromBody] AuthorPostRequest request)
     {
-        await _authorService.CreateAsync(request);
-        //TODO ver se retorna createdAtAction ou statuscodes
-        return CreatedAtRoute("GetAsync", new {id = 2}, 2);
+        try
+        {
+            var result = await _authorService.CreateAsync(request);
+            return Created("CreateAsync", new { Id = result });
+        }
+        catch (Exception err)
+        {
+            throw new BadHttpRequestException(err.Message);
+        }
     }
     
     [HttpGet]
     public async Task<IActionResult> GetAsync()
     {
-        List<string> data = new List<string>()
-        {
-            "oi", "deu", "bom"
-        };
-        return Ok(data);
+        var result = await _authorService.GetAsync();
+        return Ok(result);
+    }
+
+    [HttpPut]
+    public async Task<IActionResult> EditAsync()
+    {
+        return Ok();
+    }
+
+    [HttpDelete]
+    public async Task<IActionResult> DeleteAsync()
+    {
+        return NoContent();
     }
 }

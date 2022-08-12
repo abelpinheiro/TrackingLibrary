@@ -4,5 +4,6 @@ namespace Application.Services.Interface;
 
 public interface IAuthorService
 {
-    public Task CreateAsync(AuthorPostRequest request);
+    public Task<int> CreateAsync(AuthorPostRequest request);
+    public Task<List<AuthorGetResponse>> GetAsync();
 }

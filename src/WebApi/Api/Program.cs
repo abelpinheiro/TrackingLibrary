@@ -1,9 +1,12 @@
 using System.Reflection;
 using Application.Services;
 using Application.Services.Interface;
+using AutoMapper;
+using Domain.Repositories;
 using Domain.Services;
 using Domain.Services.Interface;
 using Infrastructure.Persistence;
+using Infrastructure.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
@@ -38,8 +41,11 @@ builder.Services.AddVersionedApiExplorer(p =>
     p.SubstituteApiVersionInUrl = true;
 });
 
-builder.Services.AddScoped<IAuthorService, AuthorService>();
-builder.Services.AddScoped<IAuthorInteractor, AuthorInteractor>();
+builder.Services.AddTransient<IAuthorService, AuthorService>();
+builder.Services.AddTransient<IAuthorInteractor, AuthorInteractor>();
+builder.Services.AddTransient<IUnitOfWork, UnitOfWork>();
+
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 var connString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<TrackingLibraryDbContext>(options => options.UseSqlServer(connString));

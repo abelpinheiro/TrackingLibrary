@@ -1,21 +1,38 @@
 ﻿using Application.DataTransferObjects;
 using Application.Services.Interface;
+using AutoMapper;
+using Domain.Entities;
 using Domain.Services.Interface;
 
 namespace Application.Services;
 
 public class AuthorService : IAuthorService
 {
-    private IAuthorInteractor _authorInteractor;
+    private readonly IAuthorInteractor _authorInteractor;
+    private readonly IMapper _mapper;
 
-    public AuthorService(IAuthorInteractor authorInteractor)
+    public AuthorService(IAuthorInteractor authorInteractor, IMapper mapper)
     {
         _authorInteractor = authorInteractor;
+        _mapper = mapper;
     }
     
-    public async Task CreateAsync(AuthorPostRequest request)
+    //TODO FIX AUTOMAPPER
+    public async Task<int> CreateAsync(AuthorPostRequest request)
     {
-        string h = "";
-        await _authorInteractor.CreateAsync(h);
+        var author = _mapper.Map<Domain.Models.AuthorPostRequest>(request);
+        Domain.Models.AuthorPostRequest a = new Domain.Models.AuthorPostRequest()
+        {
+            Gender = request.Gender,
+            Name = request.Name
+        };
+        
+        return await _authorInteractor.CreateAsync(author);
+    }
+
+    public async Task<List<AuthorGetResponse>> GetAsync()
+    {
+        var result = await _authorInteractor.GetAsync();
+        return _mapper.Map<List<AuthorGetResponse>>(result);
     }
 }

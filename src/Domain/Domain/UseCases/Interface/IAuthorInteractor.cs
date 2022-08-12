@@ -1,6 +1,11 @@
-﻿namespace Domain.Services.Interface;
+﻿using Domain.Models;
+using Domain.Repositories;
+
+namespace Domain.Services.Interface;
 
 public interface IAuthorInteractor
 {
-    public Task CreateAsync(string request);
+    public Task<int> CreateAsync(AuthorPostRequest request);
+    public Task<List<AuthorGetResponse>> GetAsync();
+
 }
